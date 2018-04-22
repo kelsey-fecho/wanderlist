@@ -1,2 +1,0 @@
-# EntrepreneurshipHackNight
-# EntrepreneurshipHackNight
