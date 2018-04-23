@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1><%=@trip.description%></h1>
 <p><a href="/trips/<%=@trip.id %>/edit">Edit This Trip</a></p>
 <h3>Destinations on the Trip:</h3>

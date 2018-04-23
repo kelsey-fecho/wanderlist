@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Edit Trip</h1>
 <form method="post" action="/trips/<%=@trip.id%>">
   <input type="hidden" name="_method" value="patch">

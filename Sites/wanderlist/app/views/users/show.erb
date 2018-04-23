@@ -1,4 +1,9 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h2><%= @user.username %></h2>
+
 <ul>
   <% @trips.each do |trip| %>
     <ul class="trip_list">

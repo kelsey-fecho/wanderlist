@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <% @dests.each do |dest| %>
   <h3><a href="/destinations/<%=dest.id%>"><%= dest.name%></a></h3>
   <p><%= dest.description%></p>
