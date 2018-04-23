@@ -5,7 +5,11 @@ class DestinationController < ApplicationController
   end
 
   get '/destinations/new' do
-    erb :'destinations/new'
+    if logged_in?
+      erb :'destinations/new'
+    else
+      #add flash message to log in
+      redirect '/'
   end
 
   post '/destinations/new' do
@@ -20,7 +24,11 @@ class DestinationController < ApplicationController
   end
 
   get '/destinations/:id' do
-    @dest = Destination.find(params[:id])
-    erb :'destinations/show'
+    if logged_in?
+      @dest = Destination.find(params[:id])
+      erb :'destinations/show'
+    else
+      #add flash message to log in
+      redirect '/'
   end
 end
