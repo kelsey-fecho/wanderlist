@@ -1,3 +1,6 @@
 <h2><%= @dest.name %></h2>
 <p><%=@dest.description%></p>
+<%@dest.trips.each do |trip|%>
+<a href="/trips/<%= trip.id %>"><%= trip.description %></a>
+<%end%>
 <p><a href="/destinations">Back to All Destinations</a>
