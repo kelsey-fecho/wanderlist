@@ -11,6 +11,7 @@ class TripController < ApplicationController
 
   get '/trips/new' do
     if logged_in?
+      @dests = Destination.all
       erb :'/trips/new'
     else
       #flash message about needing to log in
