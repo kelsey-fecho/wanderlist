@@ -8,18 +8,18 @@ class DestinationController < ApplicationController
     if logged_in?
       erb :'destinations/new'
     else
-      #add flash message to log in
+      flash[:message] = "Please log in to add destinations"
       redirect '/'
     end
   end
 
   post '/destinations/new' do
     if Destination.all.find{|d| d.name == params[:name]}
-      #add a flash message for failure
+      flash[:message] = "This destination already exists."
       redirect '/destinations/new'
     elsif params[:name] != "" && params[:description] != ""
       @dest = Destination.create(params)
-      #add a flash message for success
+      flash[:message] = "You've successfully added a destination."
       redirect "/destinations/#{@dest.id}"
     end
   end
@@ -29,7 +29,7 @@ class DestinationController < ApplicationController
       @dest = Destination.find(params[:id])
       erb :'destinations/show'
     else
-      #add flash message to log in
+      flash[:message] = "Please log in to view destinations."
       redirect '/'
     end
   end
