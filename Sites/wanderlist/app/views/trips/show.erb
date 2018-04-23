@@ -1,4 +1,5 @@
 <h1><%=@trip.description%></h1>
+<p><a href="/trips/<%=@trip.id %>/edit">Edit This Trip</a></p>
 <h3>Destinations on the Trip:</h3>
 <ul>
 <%@trip.destinations.each do |dest|%>
@@ -7,4 +8,8 @@
 </ul>
 <h3>Status: <%=@trip.status%> </h3>
 <br><br>
-<p><a href="/trips">Back to All Trips</a> | <a href="/trips/new">Make a New Trip</a> | <a href="/trips/<%=@trip.id %>/edit">Edit This Trip</a> </p>
+<form method="post" action="/trips/<%=@trip.id%>/delete">
+  <input type="submit" value="Delete Trip">
+</form>
+<br><br>
+<p><a href="/trips">Back to All Trips</a> | <a href="/trips/new">Make a New Trip</a> </p>
