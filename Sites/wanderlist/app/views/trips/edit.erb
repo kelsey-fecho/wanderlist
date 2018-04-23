@@ -1,0 +1,27 @@
+<h1>Edit Trip</h1>
+<form method="post" action="/trips">
+  <p>
+    <input type="text" name="description" value="<%=@trip.description%>">
+  </p>
+  <p>Have you taken this trip, or are you planning to?<br>
+    <input type="radio" name="status" id="taken" value="Taken" <%='checked' if @trip.status == 'Taken'%>>
+    <label for="taken">Taken</label>
+    <br>
+    <input type="radio" name="status" id="planning" value="Planning" <%='checked' if @trip.status == 'Planning'%>>
+    <label for="planning">Planning</label>
+  </p>
+  <br>
+  <p>Choose from existing destinations:<br>
+    <% @dests.each do |dest| %>
+    <input type="checkbox" name="destination_ids[]" value="<%=dest.id%>" id="dest_<%=dest.id%>" <%='checked' if @trip.destinations.include?(dest)%>>
+    <%= dest.name %>
+    <br>
+    <%end%>
+  </p>
+  <p>Or create a new destination:<br>
+    <input type="text" name="new_destination" placeholder="Destination Name">
+    <br><br>
+    <textarea name="dest_description" cols="50" rows="10" placeholder="Enter your new destination description here"></textarea>
+  </p>
+  <input type="submit" value="Create">
+</form>

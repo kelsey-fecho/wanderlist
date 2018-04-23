@@ -40,10 +40,12 @@ class TripController < ApplicationController
   end
 
   get '/trips/:id/edit' do
-
+    @trip = Trip.find(params[:id])
+    @dests = Destination.all
+    erb :'/trips/edit'
   end
 
   patch '/trips/:id' do
-    
+
   end
 end
