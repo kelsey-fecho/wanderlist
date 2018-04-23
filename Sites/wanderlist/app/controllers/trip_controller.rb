@@ -20,7 +20,19 @@ class TripController < ApplicationController
   end
 
   post '/trips' do
-    trip = Trip.create(params)
+    @trip = Trip.new(:description => params[:description], :status => params[:status])
+    params[:destination_ids].each do |dest|
+      @trip.destinations << Destination.find(dest)
+    end
+    if params[:new_destination] != "" && Destination.all.find{|d| d.name == params[:new_destination]}
+      dest = Destination.new(:name => params[:new_destination], :description => params[:dest_description])
+      dest.save
+      @trip.destinations << dest
+    end
+    @trip.user_id = session[:user_id]
+    @trip.save
+    binding.pry
+    redirect "/trips/#{@trip.id}"
   end
 
   get '/trips/:id' do
