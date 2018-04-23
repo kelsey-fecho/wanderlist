@@ -49,6 +49,11 @@ class UserController < ApplicationController
   end
 
   patch '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    @user.email = params[:email] if params[:email] != ""
+    @user.username = params[:username] if params[:username] != ""
+    @user.password = params[:password] if params[:password] != ""
+    @user.save
   end
 
   delete '/users/:slug' do

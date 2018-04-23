@@ -10,6 +10,7 @@ class DestinationController < ApplicationController
     else
       #add flash message to log in
       redirect '/'
+    end
   end
 
   post '/destinations/new' do
@@ -30,5 +31,6 @@ class DestinationController < ApplicationController
     else
       #add flash message to log in
       redirect '/'
+    end
   end
 end
