@@ -1,6 +1,10 @@
 <h2><%= @dest.name %></h2>
 <p><%=@dest.description%></p>
+<h4>Added to these trips:</h4>
+<ul>
 <%@dest.trips.each do |trip|%>
-<a href="/trips/<%= trip.id %>"><%= trip.description %></a>
+<li><a href="/trips/<%= trip.id %>"><%= trip.description %></a></li>
 <%end%>
-<p><a href="/destinations">Back to All Destinations</a>
+</ul>
+<br><br>
+<p><a href="/destinations">Back to All Destinations</a> | <a href="/destinations/new"> Create a New Destination</a></p>
