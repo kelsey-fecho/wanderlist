@@ -1,1 +1,9 @@
 <h1><%=@trip.description%></h1>
+<h3>Destinations on the Trip:</h3>
+<ul>
+<%@trip.destinations.each do |dest|%>
+  <li><a href="/destinations/<%=dest.id%>"><%=dest.name%></a></li>
+<%end%>
+</ul>
+<h3>Status: <%=@trip.status%> </h3>
+<a href="/trips">Back to All Trips</a>
