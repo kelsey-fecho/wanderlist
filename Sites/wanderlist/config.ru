@@ -6,4 +6,5 @@ end
 
 use UserController
 use DestinationController
+use TripController
 run ApplicationController
