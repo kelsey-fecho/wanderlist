@@ -35,6 +35,26 @@ class UserController < ApplicationController
     erb :'/users/show'
   end
 
+  get '/users/:slug/edit' do
+    @user = User.find_by_slug(params[:slug])
+    if current_user == @user
+      erb :'/users/edit'
+    elsif logged_in?
+      #flash message for no access allowed
+      redirect '/destinations'
+    else
+      #flash message to log in
+      redirect '/'
+    end
+  end
+
+  patch '/users/:slug' do
+  end
+
+  delete '/users/:slug' do
+
+  end
+
   get '/logout' do
    session.clear
    redirect '/'
