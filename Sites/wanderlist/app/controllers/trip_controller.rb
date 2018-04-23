@@ -31,7 +31,6 @@ class TripController < ApplicationController
     end
     @trip.user_id = session[:user_id]
     @trip.save
-    binding.pry
     redirect "/trips/#{@trip.id}"
   end
 
