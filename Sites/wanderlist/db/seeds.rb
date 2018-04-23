@@ -30,11 +30,8 @@ users_list = {
 }
 
 users_list.each do |name, user_hash|
-  u = User.new
+  u = User.new(user_hash)
   u.username = name
-  user_hash.each do |att, val|
-    u[att] = val
-  end
   u.save
 end
 
@@ -84,10 +81,7 @@ destination_list = {
 }
 
 destination_list.each do |name, dest_hash|
-  d = Destination.new
+  d = Destination.new(dest_hash)
   d.name = name
-  dest_hash.each do |att, val|
-    d[att] = val
-  end
   d.save
 end
