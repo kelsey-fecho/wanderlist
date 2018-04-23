@@ -1,0 +1,10 @@
+<h2><%= @user.username %></h2>
+<ul>
+  <% @trips.each do |trip| %>
+    <ul class="trip_list">
+      <li><h4><a href="/trips/<%=trip.id%>"><%=trip.description%></a></h4></li>
+      <li>Destinations: <ul class="dest_list"><%trip.destinations.each do |dest|%><li><a href="/destinations/<%=dest.id%>"><%=dest.name%></a></li><%end%><ul></li>
+      <li>Status: <%=trip.status%></li>
+    </ul>
+  <%end%>
+</ul>

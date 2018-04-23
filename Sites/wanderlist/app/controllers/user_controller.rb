@@ -29,12 +29,17 @@ class UserController < ApplicationController
     end
   end
 
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    @trips = @user.trips
+    erb :'/users/show'
+  end
 
   get '/logout' do
    session.clear
-   redirect '/login'
+   redirect '/'
   end
-  
+
   helpers do
      def logged_in?
        !!session[:user_id]
