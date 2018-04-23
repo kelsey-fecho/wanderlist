@@ -27,9 +27,7 @@ class TripController < ApplicationController
       end
     end
     if params[:new_destination] != "" && !Destination.all.find{|d| d.name == params[:name]}
-      dest = Destination.new(:name => params[:new_destination], :description => params[:dest_description])
-      dest.save
-      @trip.destinations << dest
+      @trip.destinations Destination.create(:name => params[:new_destination], :description => params[:dest_description])
     end
     @trip.user_id = session[:user_id]
     @trip.save
@@ -39,5 +37,13 @@ class TripController < ApplicationController
   get '/trips/:id' do
     @trip = Trip.find(params[:id])
     erb :'/trips/show'
+  end
+
+  get '/trips/:id/edit' do
+
+  end
+
+  patch '/trips/:id' do
+    
   end
 end
