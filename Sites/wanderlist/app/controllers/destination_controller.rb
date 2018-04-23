@@ -12,7 +12,7 @@ class DestinationController < ApplicationController
     if Destination.all.find{|d| d.name == params[:name]}
       #add a flash message for failure
       redirect '/destinations/new'
-    else
+    elsif params[:name] != "" && params[:description] != ""
       @dest = Destination.create(params)
       #add a flash message for success
       redirect "/destinations/#{@dest.id}"
