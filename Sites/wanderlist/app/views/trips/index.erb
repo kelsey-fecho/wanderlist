@@ -1,0 +1,9 @@
+<ul class = "trip_show_list">
+<%@trips.each do |trip| %>
+  <ul class="trip_details">
+    <li><h3><a href="/trips/<%=trip.id%>"><%=trip.description%></a></h3></li>
+    <li>Created By: <a href="/users/<%=User.find(trip.user_id).slug%>"><%=User.find(trip.user_id).username%></a></li>
+    <li>Status: <%= trip.status %></li>
+  </ul>
+<% end %>
+</ul>
