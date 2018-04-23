@@ -1,5 +1,6 @@
 <h1>Edit Trip</h1>
-<form method="post" action="/trips">
+<form method="post" action="/trips/<%=@trip.id%>">
+  <input type="hidden" name="_method" value="patch">
   <p>
     <input type="text" name="description" value="<%=@trip.description%>">
   </p>

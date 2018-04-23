@@ -46,6 +46,19 @@ class TripController < ApplicationController
   end
 
   patch '/trips/:id' do
-
+    trip = Trip.find(params[:id])
+    trip.description = params[:description]
+    trip.status = params[:status]
+    trip.destinations.clear
+    if params[:destination_ids]
+      params[:destination_ids].each do |dest|
+        trip.destinations << Destination.find(dest)
+      end
+    end
+    if params[:new_destination] != "" && !Destination.all.find{|d| d.name == params[:name]}
+      trip.destinations Destination.create(:name => params[:new_destination], :description => params[:dest_description])
+    end
+    trip.save
+    redirect "/trips/#{trip.id}"
   end
 end
