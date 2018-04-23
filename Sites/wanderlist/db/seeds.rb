@@ -85,3 +85,60 @@ destination_list.each do |name, dest_hash|
   d.name = name
   d.save
 end
+
+trip_list = {
+  "Caribbean Getaway" => {
+    :status => "Taken",
+    :user_id => 2
+  },
+  "Detective Hideout" => {
+    :status => "Taken",
+    :user_id => 7
+  },
+  "Honeymoon" => {
+    :status => "Planned",
+    :user_id => 1
+  },
+  "Secret Twin" => {
+    :status => "Dreaming",
+    :user_id => 3
+  }
+}
+
+trip_list.each do |desc, trip_hash|
+  t = Trip.new(trip_hash)
+  t.description = desc
+  t.save
+end
+
+trip_destinations_list = {
+  "Caribbean Getaway" => {
+    :trip_id => 1,
+    :destination_id => 1
+  },
+  "Caribbean Getaway 2" => {
+    :trip_id => 1,
+    :destination_id => 2
+  },
+  "Detective Hideout" => {
+    :trip_id => 2,
+    :destination_id => 4
+  },
+  "Honeymoon" => {
+    :trip_id => 3,
+    :destination_id => 14
+  },
+  "Secret Twin" => {
+    :trip_id => 4,
+    :destination_id => 6
+  },
+  "Secret Twin 2" => {
+    :trip_id => 4,
+    :destination_id => 12
+  }
+}
+
+trip_destinations_list.each do |desc, hash|
+  t = TripDestination.new(hash)
+  t.save
+end
