@@ -1,4 +1,4 @@
 <% @dests.each do |dest| %>
-  <h3><%= dest.name%></h3>
+  <h3><a href="/destinations/<%=dest.id%>"><%= dest.name%></a></h3>
   <p><%= dest.description%></p>
 <% end %>
