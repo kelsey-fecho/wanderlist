@@ -1,4 +1,8 @@
+require 'rack-flash'
+
 class DestinationController < ApplicationController
+  use Rack::Flash
+
   get '/destinations' do
     @dests = Destination.all
     erb :'destinations/index'

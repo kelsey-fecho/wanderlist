@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class TripController < ApplicationController
+  use Rack::Flash
 
   get '/trips' do
     if logged_in?
