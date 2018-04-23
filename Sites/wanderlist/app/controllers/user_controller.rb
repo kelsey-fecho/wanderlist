@@ -12,7 +12,11 @@ class UserController < ApplicationController
   end
 
   get '/signup' do
-    erb :'users/new'
+    if logged_in?
+      redirect '/destinations'
+    else
+      erb :'users/new'
+    end
   end
 
   post '/signup' do
@@ -26,6 +30,11 @@ class UserController < ApplicationController
   end
 
 
+  get '/logout' do
+   session.clear
+   redirect '/login'
+  end
+  
   helpers do
      def logged_in?
        !!session[:user_id]
@@ -34,5 +43,5 @@ class UserController < ApplicationController
      def current_user
        User.find(session[:user_id])
      end
-   end  
+   end
 end
