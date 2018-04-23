@@ -23,7 +23,8 @@ class UserController < ApplicationController
     user = User.new(:email => params[:email], :username => params[:username], :password => params[:password])
     if user.save && user.username != "" && user.email != ""
       session[:user_id] = user.id
-      redirect '/destinations'
+      flash[:message] = "Successfully created a new user account"
+      redirect '/'
     else
       redirect '/signup'
     end
@@ -38,10 +39,6 @@ class UserController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     @trips = @user.trips
     erb :'/users/show'
-  end
-
-  delete '/users/:slug' do
-
   end
 
   get '/logout' do

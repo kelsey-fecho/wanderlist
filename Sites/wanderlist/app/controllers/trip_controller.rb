@@ -5,6 +5,7 @@ class TripController < ApplicationController
       @trips = Trip.all
       erb :'/trips/index'
     else
+      flash[:message] = "Please log in to view trips"
       redirect '/'
     end
   end
@@ -14,7 +15,7 @@ class TripController < ApplicationController
       @dests = Destination.all
       erb :'/trips/new'
     else
-      #flash message about needing to log in
+      flash[:message] = "Please log in to create a new trip"
       redirect '/'
     end
   end
@@ -31,12 +32,18 @@ class TripController < ApplicationController
     end
     trip.user_id = session[:user_id]
     trip.save
+    flash[:message] = "Successfully created a new trip"
     redirect "/trips/#{trip.id}"
   end
 
   get '/trips/:id' do
-    @trip = Trip.find(params[:id])
-    erb :'/trips/show'
+    if logged_in?
+      @trip = Trip.find(params[:id])
+      erb :'/trips/show'
+    else
+      flash[:message] = "Please log in to view trips"
+      redirect '/'
+    end
   end
 
   get '/trips/:id/edit' do
@@ -45,10 +52,10 @@ class TripController < ApplicationController
       @dests = Destination.all
       erb :'/trips/edit'
     elsif logged_in?
-      #flash message for you don't have access to this
+      flash[:message] = "You are not authorized to edit this trip"
       redirect '/trips'
     else
-      #flash message for you need to log in
+      flash[:message] = "Please log in to edit trips"
       redirect '/'
     end
   end
@@ -67,6 +74,7 @@ class TripController < ApplicationController
       trip.destinations Destination.create(:name => params[:new_destination], :description => params[:dest_description])
     end
     trip.save
+    flash[:message] = "Trip successfully updated"
     redirect "/trips/#{trip.id}"
   end
 
@@ -74,13 +82,13 @@ class TripController < ApplicationController
     trip = Trip.find(params[:id])
     if logged_in? && trip.user_id == session[:user_id]
       trip.delete
-      #flash message for trip successfully deleted
+      flash[:message] = "Trip successfully deleted"
       redirect '/trips'
     elsif logged_in?
-      #flash message that you don't have access to do This
+      flash[:message] = "You are not authorized to delete this trip"
       redirect '/trips'
     else
-      #flash message for please log in
+      flash[:message] = "Please log in to manage trips"
       redirect '/'
     end
   end
