@@ -21,10 +21,12 @@ class TripController < ApplicationController
 
   post '/trips' do
     @trip = Trip.new(:description => params[:description], :status => params[:status])
-    params[:destination_ids].each do |dest|
-      @trip.destinations << Destination.find(dest)
+    if params[:destination_ids]
+      params[:destination_ids].each do |dest|
+        @trip.destinations << Destination.find(dest)
+      end
     end
-    if params[:new_destination] != "" && Destination.all.find{|d| d.name == params[:new_destination]}
+    if params[:new_destination] != "" && !Destination.all.find{|d| d.name == params[:name]}
       dest = Destination.new(:name => params[:new_destination], :description => params[:dest_description])
       dest.save
       @trip.destinations << dest
