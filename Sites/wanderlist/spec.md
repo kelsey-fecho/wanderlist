@@ -8,10 +8,10 @@ Specs:
 - [x] Include at least one belongs_to relationship on another model (Trips belong to a user)
 - [x] Include user accounts (for User class)
 - [x] Ensure that users can't modify content created by other users -- used logged_in and current user helper methods throughout controllers for this purpose
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying -- Trips have all these routes
 - [x] Include user input validations -- included throughout controllers where form data is inputted or updated
-- [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Display validation failures to user with error message (example form URL e.g. /posts/new) -- Implemented this throughout all controllers using Rack::Flash
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits
