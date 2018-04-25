@@ -1,5 +1,5 @@
 class TripController < ApplicationController
-  
+
   get '/trips' do
     if logged_in?
       @trips = Trip.all
@@ -48,7 +48,7 @@ class TripController < ApplicationController
 
   get '/trips/:id/edit' do
     @trip = Trip.find(params[:id])
-    if logged_in && session[:user_id] == @trip.user_id
+    if logged_in? && session[:user_id] == @trip.user_id
       @dests = Destination.all
       erb :'/trips/edit'
     elsif logged_in?

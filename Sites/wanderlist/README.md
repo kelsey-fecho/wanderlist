@@ -2,6 +2,9 @@
 
 Use this app to build and share trips.
 
+##Demo
+
+
 ##Installing Wanderlist
 To install Wanderlist, fork and clone this repo to your local folder.
 Next, run ```bundle install``` to set up all necessary gem dependencies.
